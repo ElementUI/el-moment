@@ -1,7 +1,7 @@
 {
   "name": "el-moment",
   "description": "A Vue component of formatting dates using moment",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "dist/el-moment.common.js",
   "scripts": {
     "test": "eslint src",
