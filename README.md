@@ -1,5 +1,5 @@
 # el-moment
-[![Build Status](https://travis-ci.org/QingWei-Li/el-moment.svg?branch=master)](https://travis-ci.org/QingWei-Li/el-moment)
+[![Build Status](https://travis-ci.org/ElementUI/el-moment.svg?branch=master)](https://travis-ci.org/ElementUI/el-moment)
 [![npm](https://img.shields.io/npm/v/el-moment.svg)](https://www.npmjs.com/package/el-moment)
 
 > A Vue component of formatting dates using moment.
