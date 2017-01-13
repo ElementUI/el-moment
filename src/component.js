@@ -1,32 +1,26 @@
 import moment from 'moment'
 import { getChild } from './util'
 
-const cache = {}
-
 export default {
   name: 'ElMoment',
 
-  functional: true,
+  abstract: true,
 
   props: ['value', 'format'],
 
-  render (h, ctx) {
-    const vnode = getChild(ctx.children)
-
+  render (h) {
+    const vnode = getChild(this.$slots.default)
     if (!vnode) return
 
     const opts = vnode.componentOptions
-    const id = vnode.tag
+    const ctx = this.$vnode.componentOptions
 
-    if (ctx.data.on && ctx.data.on.input) {
-      opts.propsData.value = cache[id] || ctx.props.value
+    if (ctx.listeners && ctx.listeners.input) {
+      opts.propsData.value = ctx.propsData.value
       opts.listeners = opts.listeners || {}
 
-      opts.listeners.input = function (val) {
-        if (+cache[id] !== +val) ctx.parent.$forceUpdate()
-
-        cache[id] = val
-        ctx.data.on.input(val ? moment(val).format(ctx.props.format) : val)
+      opts.listeners.input = val => {
+        ctx.listeners.input.fn(val ? moment(val).format(ctx.propsData.format) : val)
       }
     }
 

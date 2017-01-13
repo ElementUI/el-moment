@@ -14,7 +14,7 @@
       <p>{{ date }}</p>
 
       <el-moment v-model="date" format="MMMM Do YYYY, h:mm:ss a">
-        <el-date-picker />
+        <el-date-picker></el-date-picker>
       </el-moment>
     </div>
   </template>
@@ -40,7 +40,7 @@
       <p>{{ date }}</p>
 
       <el-moment v-model="date" format="x">
-        <el-date-picker />
+        <el-date-picker></el-date-picker>
       </el-moment>
     </div>
   </template>

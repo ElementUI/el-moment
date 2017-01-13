@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+</head>
+<body>
+  <div id="app">
+    <p>{{ value }}</p>
+    <p>{{ value1 }}</p>
+    <el-moment v-model="value">
+      <el-date-picker />
+    </el-moment>
+    <el-moment @input="value1 = $event" :value="value1">
+      <el-date-picker />
+    </el-moment>
+  </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui"></script>
+<script src="node_modules/moment/moment.js"></script>
+<script src="dist/el-moment.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+
+    data() {
+      return {
+        value: '',
+        value1: ''
+      }
+    }
+  })
+</script>
+</html>
