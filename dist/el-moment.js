@@ -13,32 +13,26 @@ function getChild (children) {
   return children && children.filter(function (c) { return c && c.componentOptions; })[0]
 }
 
-var cache = {};
-
 var ElMoment$1 = {
   name: 'ElMoment',
 
-  functional: true,
+  abstract: true,
 
   props: ['value', 'format'],
 
-  render: function render (h, ctx) {
-    var vnode = getChild(ctx.children);
-
+  render: function render (h) {
+    var vnode = getChild(this.$slots.default);
     if (!vnode) { return }
 
     var opts = vnode.componentOptions;
-    var id = vnode.tag;
+    var ctx = this.$vnode.componentOptions;
 
-    if (ctx.data.on && ctx.data.on.input) {
-      opts.propsData.value = cache[id] || ctx.props.value;
+    if (ctx.listeners && ctx.listeners.input) {
+      opts.propsData.value = ctx.propsData.value;
       opts.listeners = opts.listeners || {};
 
       opts.listeners.input = function (val) {
-        if (+cache[id] !== +val) { ctx.parent.$forceUpdate(); }
-
-        cache[id] = val;
-        ctx.data.on.input(val ? moment(val).format(ctx.props.format) : val);
+        ctx.listeners.input.fn(val ? moment(val).format(ctx.propsData.format) : val);
       };
     }
 
